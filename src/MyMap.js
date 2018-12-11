@@ -1,16 +1,39 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import MyMarker from './MyMarkers';
 
+let markerPin = 'pink-pin.png';
+
+let handleMouseClick = () => {
+  console.log ('Mouse click' );
+};
+
+let handleMouseOver = () => {
+  console.log ('Mouse Over');
+};
+
+let handleMouseOut = () => {
+  console.log ('Mouse Out');
+};
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+
   <GoogleMap
     defaultCenter={{lat: 36.7856242, lng: -88.0329686}}
     defaultZoom={10}
+
   >
     { markerLocations.map (marker => (
-      <Marker key={marker.id} 
-        position={marker.location} />
+
+      <Marker
+        key={marker.id}
+        position={marker.location}
+        icon = {markerPin}
+        title= { marker.name }
+        defaultAnimation={2}
+        onClick = { handleMouseClick()}
+        onMouseOver = {handleMouseOver()}
+        onMouseOut = {handleMouseOut()}
+      />
     ))}
   </GoogleMap>
 ));
@@ -34,7 +57,7 @@ const  markerLocations = [
   {id: 8, name: 'Hillman Ferry', location: {lat: 36.9453869, lng: -88.188774}, category: 'Developed Campground'},
   {id: 9, name: 'Wranglers', location: {lat: 36.7377307, lng: -88.0022237,}, category: 'Developed Campground'},
   {id: 10, name: 'Energy Lake', location: {lat: 36.8553623, lng: -88.020011}, category: 'Developed Campground'},
-  {id: 11, name: 'Redd Hollow', location: {lat: 36.713395, lng: -88.0765745}, category: 'Basic Campground'},
+  {id: 11, name: 'Redd Hollow', location: {lat: 36.719325, lng: -88.069013}, category: 'Basic Campground'},
   {id: 12, name: 'Turkey Bay', location: {lat: 36.7506555, lng: -88.0737269}, category: 'Self Service Campground'},
   {id: 13, name: 'Fenton', location: {lat: 36.7740624, lng: -88.1098419 }, category: 'Self Service Campground'},
   {id: 14, name: 'Colson Hollow', location: {lat: 36.7254919, lng: -88.0785244}, category: 'Group Camping Area'},
@@ -53,6 +76,7 @@ class MyMap extends Component {
 
   state = {
     isMarkerShown: true,
+    animation: 2,
   }
 
   componentDidMount() {
@@ -60,8 +84,7 @@ class MyMap extends Component {
   }
 
   render() {
-    let markers = markerLocations;
-    console.log ('markers = ' + markers[0] + ', ' + markers[1]);
+
     return (
       <div id='map' style={{ height: '100vh', width: '100%' }}>
         <MyMapComponent

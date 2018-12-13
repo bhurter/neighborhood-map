@@ -32,12 +32,21 @@ h1, h2 {
 h2 {
   font-size: 18px;;
 }
-#map {
+
+.map {
   bottom:0px;
+   height: 100%;
+   left: 362px;
+   position: absolute;
+   right: 0px;
+}
+
+.container {
   height: 100%;
-  left: 362px;
-  position: absolute;
-  right: 0px;
+  position: relative;
+  display: flex;
+  flex-flow: wrap;
+
 }
 
 .options-box {
@@ -51,6 +60,15 @@ h2 {
   width: 340px;
 }
 
+.ul-scroll {
+  background:#fff;
+  border: 1px solid #999;
+  border-radius: 3px;
+  height: 40vh;
+  overflow: auto;
+  padding: 10px 10px 30px 10px;
+  text-align: left;
+}
 
 @keyframes App-logo-spin {
   from {

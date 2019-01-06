@@ -1,5 +1,7 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox';
+import SiteDetails from './SiteDetails';
 import { compose, withProps } from 'recompose';
 import './App.css';
 
@@ -33,10 +35,19 @@ export const MyMap = compose (
               icon = {place.markerPin}
               title= { place.name }
               defaultAnimation={2}
-              onClick = { (event) => props.handleOnClick (event, place)}
+              onClick = { () => props.handleOnClick (place)}
               onMouseOver = { () => props.handleMouseOver (place)}
               onMouseOut = { () => props.handleMouseOut (place)}
             >
+              {(place.markerPin === props.onClickURL) &&  (
+                <InfoBox
+                  onCloseClick={ () => props.closeInfoBox(place)}
+                >
+                  <SiteDetails
+                    place={place}
+                  >
+                  </SiteDetails>
+                </InfoBox>)}
             </Marker>
           );})
       }

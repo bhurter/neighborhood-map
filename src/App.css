@@ -1,3 +1,5 @@
+html, body { height:100%;width:100% };
+
 .App {
   text-align: center;
 }
@@ -34,40 +36,143 @@ h2 {
 }
 
 .map {
-  bottom:0px;
-   height: 100%;
-   left: 362px;
-   position: absolute;
-   right: 0px;
+
+   height: 100vh;
+   width: 100%;
+   /*left: 362px;*/
+   /*left: 0px;
+   position: relative;*/
+
+}
+
+.toggle-menu {
+  height: 100%;
+  width: 40px;
+}
+
+.offline-map {
+  background-image: url('/images/offline-map.png');
+  background-size: contain;
+  height: 100vh;
+  text-align: center;
+  opacity: .5;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.offline-div {
+  margin: 0;
+  padding: 1vh;
+  position: relative;
+  top: 25vh;
+  background-color: #f1efe8;
 }
 
 .container {
   height: 100%;
-  position: relative;
+  width: 100%;
+  display: flex;
+  background-color: #f1efe8;
+  /*flex-flow: wrap;*/
+}
+
+.info-box {
+  background-color: #f1efe8;
+  border-style: solid;
+  border: 1px solid #999;
+  color: #999;
+  padding: 5px;
+  border-radius: 5px;
+  width: 220px;
+  opacity: 1.0;
+}
+/*  position:relative;*/
+
+.info-box-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+}
+
+
+
+.info-title {
+  /*position:relative;*/
+}
+
+.info-contents {
+/*  position:relative;*/
+}
+
+.hide-show {
+  background-color: #f0ffff;
+  padding: 0px;
+  width: 64px;
+  height: 100%;
   display: flex;
   flex-flow: wrap;
 
 }
-
 .options-box {
-  background: #fff;
-  border: 1px solid #999;
-  border-radius: 3px;
+  background: #f1efe8;
+  /*border: 1px solid #999;
+  border-radius: 3px;*/
   height: 100%;
-  line-height: 35px;
+  /*line-height: 35px;*/
   padding: 10px 10px 30px 10px;
   text-align: left;
-  width: 340px;
+  /*width: 340px;*/
+  width: 30%;
 }
 
+.options-box-closed {
+  display: none;
+}
+.options-box-open {
+  display: inline-block;
+}
+
+.options-button{
+ background-image: url("/round-left-button.svg");
+ background-color: #f1efe8;
+ background-repeat: no-repeat;
+ background-size: contain;
+ border: none;
+ cursor: pointer;
+ display: inline-block;
+ font-size: 0;
+ float: right;
+ height: 32px;
+ width: 32px;
+ margin-top: 15px;
+ margin-left: 5px;
+ outline: none;
+}
+
+.options-button-open {
+  transform: rotateY(0deg);
+}
+
+.options-button-close {
+  transform: rotateY(180deg);
+}
+
+
 .ul-scroll {
-  background:#fff;
+  background:#f1efe8;
   border: 1px solid #999;
   border-radius: 3px;
   height: 40vh;
   overflow: auto;
   padding: 10px 10px 30px 10px;
   text-align: left;
+}
+
+.li-myList {
+    cursor: pointer;
+    font-size: 1.0 em;
 }
 
 @keyframes App-logo-spin {

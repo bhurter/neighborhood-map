@@ -22,7 +22,7 @@ class MyPlaces extends Component {
 
     return (
       <ul
-        title= 'Camp Sites'
+        title= 'Campgrounds in LBL'
         className = 'ul-scroll'
       >
         {myPlaces
@@ -34,7 +34,8 @@ class MyPlaces extends Component {
             return(
               <li
                 key= {place.id}
-                onClick = { (event) => this.props.handleOnClick (event, place)}
+                onClick = { () => this.props.handleOnClick (place)}
+                className = 'li-myList'
               >{place.name}</li>
             );})}
       </ul>

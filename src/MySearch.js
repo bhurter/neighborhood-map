@@ -39,18 +39,18 @@ class MySearch extends Component {
     }
   */
 
-    render() {
-      return (
-        <div className = 'search-input=wrapper'>
-          <input
-            type = 'text'
-            placeholder = 'search for campground'
-            value = {this.props.searchQuery}
-            onChange = {(event) => this.props.updateQuery(event.target.value)}
-          />
-        </div>
-      );
-    }
+  render() {
+    return (
+      <div className = 'search-input=wrapper'>
+        <input
+          type = 'text'
+          placeholder = 'search for campground'
+          value = {this.props.searchQuery}
+          onChange = {(event) => this.props.updateQuery(event.target.value)}
+        />
+      </div>
+    );
+  }
 }
 
 export default MySearch;

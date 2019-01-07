@@ -21,8 +21,12 @@ state = {
   markerURL: 'blue-pin.png',
   mouseOverURL: 'yellow-pin.png',
   showSideBar: true,
-
+  defaultCenter: {
+    lat: 36.7856242,
+    lng: -88.0329686}
 }
+
+
 
 componentDidMount() {
   let campgrounds =  Campgrounds.map (campground => {
@@ -203,6 +207,7 @@ componentWillMount  ()  {
                       <SiteDetails
                         key={'sb'+place.id}
                         place={place}
+                        mapCenter={this.state.defaultCenter}
                       />
                     );
                   })
@@ -221,6 +226,7 @@ componentWillMount  ()  {
                   handleMouseOut = {this.handleMouseOut}
                   closeInfoBox = {this.closeInfoBox}
                   onClickURL = {this.state.onClickURL}
+                  mapCenter = {this.state.defaultCenter}
                 />
               </Online>
 

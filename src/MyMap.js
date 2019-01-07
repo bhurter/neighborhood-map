@@ -21,7 +21,7 @@ export const MyMap = compose (
   return (
 
     <GoogleMap
-      defaultCenter={{lat: 36.7856242, lng: -88.0329686}}
+      defaultCenter={props.mapCenter}
       defaultZoom={10}
       scrollwheel={false}
       zoomControl={true}
@@ -45,6 +45,7 @@ export const MyMap = compose (
                 >
                   <SiteDetails
                     place={place}
+                    mapCenter={props.mapCenter}
                   >
                   </SiteDetails>
                 </InfoBox>)}

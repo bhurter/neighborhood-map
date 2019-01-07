@@ -6,22 +6,29 @@ class SiteDetails extends Component {
 
   static propTypes = {
     place: PropTypes.object.isRequired,
+    mapCenter: PropTypes.object.isRequired,
   }
 
   state = {
     flickrAPIKey: '81681c8d34bd8f7da8994a9664dac8cb',
     flickrAPISecret: 'a76ac0da7275f958',
+    flickrGroup: '1167677%40N21',
     flickrURL: '',
-    flickrNotFound: 'image-not-available.jpg',
-    flickrArray: [],
+    flickrPics: [],
+
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.getFlickrPic ();
   }
 
-  setSearch = (place, targeted) => {
-    return targeted ?
+  componentDidMount () {
+
+  }
+
+  getPics = (place, targeted) => {
+    let picArray = [];
+    let FlickrSearch = targeted ?
       'https://api.flickr.com/services/rest/' +
         '?method=flickr.photos.search' +
         '&api_key=' + this.state.flickrAPIKey +
@@ -30,7 +37,7 @@ class SiteDetails extends Component {
         '&privacy_filter=1' +
         '&lat=' + place.location.lat +
         '&lon=' + place.location.lng +
-        '&radius=1.5' +
+        '&radius=1' +
         '&radius_units=m' +
         '&format=json' +
         '&nojsoncallback=1'
@@ -50,12 +57,7 @@ class SiteDetails extends Component {
         '&radius_units=m' +
         '&format=json' +
         '&nojsoncallback=1';
-  }
-
-  fetchFlickr = (searchQuery) => {
-    let picArray = [];
-    let flickrURL = '';
-    fetch (searchQuery)
+    fetch(FlickrSearch)
       .then(function(response){
         return response.json();
       })
@@ -63,14 +65,9 @@ class SiteDetails extends Component {
         picArray = pictures.photos.photo.map((pic) => {
           return (pic);
         });
-        if (picArray.length > 0) {
-          let pic = picArray[Math.floor(Math.random() * picArray.length)];
-          flickrURL = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
-        } else {
-          flickrURL = this.state.flickrNotFound;
-        }
-        this.setState ({flickrURL: flickrURL});
+        console.log ('in fetch, picArray = ' + picArray);
       }.bind(this));
+    return picArray;
   }
 
   getFlickrPic = () => {
@@ -78,28 +75,30 @@ class SiteDetails extends Component {
     let targetedSearch = true;
     let generalSearch = false;
 
-    this.fetchFlickr ( this.setSearch(place, targetedSearch));
-
-    if (this.state.flickrURL === this.state.flickrNotFound) {
-      this.fetchFlickr (this.setSearch(place, generalSearch));}
-
-    /*fetch(this.setSearch(place, targetedSearch))
-      .then(function(response){
-        return response.json();
-      })
-      .then(function(pictures){
-        picArray = pictures.photos.photo.map((pic) => {
-          return (pic);
-        });
-        if (picArray.length > 0) {
-          let pic = picArray[Math.floor(Math.random() * picArray.length)];
-          flickrURL = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
+    let sitePics = this.getPics(place, targetedSearch);
+    Promise.all (sitePics)
+      .then (() => {
+        if (sitePics.length <= 0) {
+          sitePics = this.getPics(place, generalSearch);
+          Promise.all (sitePics)
+            .then(() => {
+              this.setState({flickrPics: sitePics});
+            });
         } else {
-          flickrURL = 'image-not-available.jpg';
+          this.setState({flickrPics: sitePics});
         }
-        this.setState ({flickrURL: flickrURL});
-      }.bind(this)); */
-  };
+      }
+      );
+    let pic = this.state.flickrPics.length > 0?
+      (this.state.flickrPics[Math.floor(Math.random() * this.state.flickrPics.length)] ) :
+      '';
+    console.log ('pic = ' + pic);
+    let flickrURL = pic ?
+      'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg' :
+      'image-not-available.jpg';
+    this.setState ({flickrURL: flickrURL});
+    console.log ('flickrURL = ' + flickrURL);
+  }
 
   render() {
     let place = this.props.place;

@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './App.css';
+import {Online, Offline} from 'react-detect-offline';
 
 class SiteDetails extends Component {
 
   static propTypes = {
     place: PropTypes.object.isRequired,
+    mapCenter: PropTypes.object.isRequired,
+    isInfoBox: PropTypes.bool.isRequired,
   }
 
   state = {
     flickrAPIKey: '81681c8d34bd8f7da8994a9664dac8cb',
     flickrAPISecret: 'a76ac0da7275f958',
     flickrURL: '',
+    flickrTitle: '',
     flickrNotFound: 'image-not-available.jpg',
     flickrArray: [],
+    offlineImage: '/images/BisonAtLBL.png',
   }
 
   componentDidMount () {
@@ -55,35 +60,51 @@ class SiteDetails extends Component {
   fetchFlickr = (searchQuery) => {
     let picArray = [];
     let flickrURL = '';
-    fetch (searchQuery)
-      .then(function(response){
-        return response.json();
-      })
-      .then(function(pictures){
-        picArray = pictures.photos.photo.map((pic) => {
-          return (pic);
-        });
-        if (picArray.length > 0) {
-          let pic = picArray[Math.floor(Math.random() * picArray.length)];
-          flickrURL = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
-        } else {
-          flickrURL = this.state.flickrNotFound;
-        }
-        this.setState ({flickrURL: flickrURL});
-      }.bind(this));
-  }
+    let flickrTitle = '';
+    if (navigator.onLine) {
 
+      fetch (searchQuery)
+        .then(function(response){
+          return response.json();
+        })
+
+        .then(function(pictures){
+          picArray = pictures.photos.photo.map((pic) => {
+            return (pic);
+          });
+          if (picArray.length > 0) {
+            let pic = picArray[Math.floor(Math.random() * picArray.length)];
+            flickrURL = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
+            flickrTitle = this.props.place.name + ':' + pic.title;
+          } else {
+            flickrURL = this.state.flickrNotFound;
+            flickrTitle = this.props.place.name;
+          }
+          this.setState ({
+            flickrURL: flickrURL,
+            flickrTitle: flickrTitle
+          });
+        }.bind(this))
+        .catch (error => {console.warn (error);});
+    } else {
+      this.setState ({
+        flickrURL: this.state.flickrNotFound,
+        flickrTitle: this.props.place.name
+      });
+    }
+
+  }
   getFlickrPic = () => {
     let place = this.props.place;
     let targetedSearch = true;
-    let generalSearch = false;
+    //let generalSearch = false;
 
     this.fetchFlickr ( this.setSearch(place, targetedSearch));
 
-    if (this.state.flickrURL === this.state.flickrNotFound) {
+    /*if (this.state.flickrURL === this.state.flickrNotFound) {
       this.fetchFlickr (this.setSearch(place, generalSearch));}
 
-    /*fetch(this.setSearch(place, targetedSearch))
+    fetch(this.setSearch(place, targetedSearch))
       .then(function(response){
         return response.json();
       })
@@ -103,22 +124,29 @@ class SiteDetails extends Component {
 
   render() {
     let place = this.props.place;
+    let className = ['info-box ', this.props.isInfoBox ? 'info-box-details' : 'options-box-details' ];
     return (
-      <div className="info-box" tabIndex="0" >
+
+      <div className={className} tabIndex="0" >
         <h3> {place.name} </h3>
-        <div> Helpful links:
-          <ul
-            title = "place.name"
-            className="info-contents" >
-            <li>
-              <a href = {place.link} target = "blank"> {place.name + ' ' + place.category }</a>
-            </li>
-            <li>
-              <a href = "https://www.landbetweenthelakes.us/seendo/camping/" target = "blank">Camping at Land Between the Lakes</a>
-            </li>
-          </ul>
-          <img className = "info-box-image" src={this.state.flickrURL} alt={place.name}/>
-        </div>
+        <ul
+          title = "place.name"
+          className="info-contents" >Helpful Links:
+          <li>
+            <a href = {place.link} target = "blank"> {place.name + ' ' + place.category }</a>
+          </li>
+          <li>
+            <a href = "https://www.landbetweenthelakes.us/seendo/camping/" target = "blank">Camping at Land Between the Lakes</a>
+          </li>
+        </ul>
+
+        <Online>
+          <img className = "info-box-image" src={this.state.flickrURL} alt={this.state.flickrTitle}/>
+        </Online>
+
+        <Offline>
+          <img className = "info-box-image" src={this.state.offlineImage} alt="Bison at LBL"/>
+        </Offline>
       </div>
 
     );

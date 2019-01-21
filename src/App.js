@@ -5,6 +5,7 @@ import {Online, Offline} from 'react-detect-offline';
 
 
 import { MyMap } from './MyMap';
+import Header from './Header';
 import MyPlaces from './MyPlaces';
 import MySearch from './MySearch';
 import SiteDetails from './SiteDetails';
@@ -14,14 +15,15 @@ import './App.css';
 class App extends Component {
 
 state = {
-  myPlaces: [],
-  searchQuery: '',
-  markers: [],
-  onClickURL:'pink-pin.png',
-  markerURL: 'blue-pin.png',
-  mouseOverURL: 'yellow-pin.png',
-  showSideBar: true,
-  defaultCenter: {
+  myPlaces: [],                     // array of interesting places.
+  searchQuery: '',                  // current query in the search box
+  markers: [],                      // array of markers to be shown on the map
+  selectedMarker:'pink-pin.png',    // icon for the selected marker
+  standardMarker: 'blue-pin.png',   // icon for the un-selected marker
+  hoverMarker: 'yellow-pin.png',    // icon to show when hovering over a marker
+  activeMarker: -1,                 // id of the currently selected marker
+  showSideBar: true,                // indicates whether or not the sidebar is visible
+  defaultCenter: {                  // default map center
     lat: 36.7856242,
     lng: -88.0329686}
 }
@@ -29,85 +31,115 @@ state = {
 
 
 componentDidMount() {
+
+  /* Load the campground data */
   let campgrounds =  Campgrounds.map (campground => {
     return campground;
   });
+
+  /* Sort the list of campgrounds alphabetically */
   campgrounds.sort(sortBy('name'));
+
+  /* save the interesting places and list of current markers in the current state */
+
   this.setState({
     myPlaces: campgrounds,
     markers: campgrounds});
 }
 
-
-componentWillMount  ()  {
-  let campgrounds =  Campgrounds.map (campground => {
-    return campground;
-  });
-  campgrounds.sort(sortBy('name'));
-  this.setState({
-    myPlaces: campgrounds,
-    markers: campgrounds});
-
-}
-
-
-
-  setMarkers = (showAll) => {
-    let myPlaces = this.state.myPlaces;
-    let markers = [];
-    showAll ?
-      markers =
-        myPlaces.map (place => {
-          place.markerPin = this.state.markerURL;
-          return place;
-        })
-      :
-      markers =
-        myPlaces
-          .filter  ( place => {
-            return place.showPlace === true;
-          })
-          .map (place => {
-            place.markerPin = this.state.markerURL;
-            return place;
-          });
-
-
-    this.setState ({ markers: markers });
+  closeInfoBox = (event, infoBoxMarker) => {
+    this.handleOnClick (event, infoBoxMarker);
   };
 
-  closeInfoBox = (infoBoxMarker) => {
-    this.handleOnClick (infoBoxMarker);
-  };
 
-  handleOnClick = (clickedMarker) => {
-    if (clickedMarker) {
-      (clickedMarker.markerPin === this.state.onClickURL) ?
-        this.setMarkerIcon (clickedMarker, this.state.markerURL)
-        : this.setMarkerIcon (clickedMarker, this.state.onClickURL);
-    }
-
-  };
-
-  handleMouseOver = (hilightMarker) => {
-    (hilightMarker.markerPin === this.state.onClickURL) ?
-      this.setMarkerIcon (hilightMarker, this.state.onClickURL)
-      : this.setMarkerIcon (hilightMarker, this.state.mouseOverURL);
+  handleListClick = (event, clickedItem) => {
+    this.handleOnClick (event, clickedItem);
   }
+
 
   handleMouseOut = (hilightMarker) => {
-    hilightMarker.markerPin === this.state.onClickURL ?
-      this.setMarkerIcon (hilightMarker, this.state.onClickURL)
-      : this.setMarkerIcon (hilightMarker, this.state.markerURL);
+    hilightMarker.markerPin === this.state.selectedMarker ?
+      this.setMarkerIcon (hilightMarker.id, this.state.selectedMarker)
+      : this.setMarkerIcon (hilightMarker.id, this.state.standardMarker);
   }
 
-  setMarkerIcon = (markerToUpdate, markerIcon) => {
+  handleMouseOver = (hilightMarker) => {
+    (hilightMarker.markerPin === this.state.selectedMarker) ?
+      this.setMarkerIcon (hilightMarker.id, this.state.selectedMarker)
+      : this.setMarkerIcon (hilightMarker.id, this.state.hoverMarker);
+  }
+
+  handleOnClick = (event, clickedMarker) => {
+
+    if (clickedMarker) {
+      /* Determine if this marker is selected.
+          If so, then
+            unselect  this marker
+            reset activeMarkerID to none selected
+          If not, then
+            unselect selected marker (if any)
+            set this marker to selected
+            save as active Marker*/
+      let activeMarkerID = this.state.activeMarker;
+      if (clickedMarker.id === activeMarkerID) {
+        /* unselect this marker and reset activeMarkerID state to none */
+        activeMarkerID = -1;
+        this.setMarkerIcon (clickedMarker.id, this.state.standardMarker);
+      } else {
+        if (activeMarkerID >= 0) {
+          this.setMarkerIcon (activeMarkerID, this.state.standardMarker);}
+        this.setMarkerIcon (clickedMarker.id, this.state.selectedMarker);
+        activeMarkerID = clickedMarker.id;
+      }
+      this.setState ({activeMarker: activeMarkerID});
+    }
+  }
+
+  setMarkerIcon = (markerToUpdateID, markerIcon) => {
     let newMarkers = this.state.markers.map (marker => {
       return marker;});
-    let xMarksTheSpot = newMarkers.findIndex (marker => marker.id === markerToUpdate.id);
+    let xMarksTheSpot = newMarkers.findIndex (marker => marker.id === markerToUpdateID);
     newMarkers[xMarksTheSpot].markerPin = markerIcon;
     this.setState({markers: newMarkers});
   }
+
+  /******************************************************************************
+   *  The setMarkers function sets up the markers array based on which places
+   *  are marked to be shown on the map.
+   *
+   *  Input:
+   *    showAll - Boolean.
+   *              If true, reset the markers array to show all places.
+   *              If false, only set the markers array to include items that have
+   *                  been marked to show.
+   *
+   *****************************************************************************/
+
+    setMarkers = (showAll) => {
+      let myPlaces = this.state.myPlaces;
+      let markers = [];
+      showAll ?
+        markers =
+          myPlaces.map (place => {
+            place.markerPin = this.state.standardMarker;
+            return place;
+          })
+        :
+        markers =
+          myPlaces
+            .filter  ( place => {
+              return place.showPlace === true;
+            })
+            .map (place => {
+              place.markerPin = this.state.standardMarker;
+              return place;
+            });
+
+      /*  set state for the markers array.  This will cause the map to re-render,
+       *  and only show the markers that have been requested to be shown
+       */
+      this.setState ({ markers: markers });
+    };
 
   setShowAllMyPlaces = (value) => {
     let myPlaces = this.state.myPlaces;
@@ -166,21 +198,26 @@ componentWillMount  ()  {
 
 
   render() {
+
     return (
       <Route exact path="/"  render={() => (
         <div>
+          <Header
+            showSideBar = {this.state.showSideBar}
+            toggleOptions = {this.toggleOptions}
+          />
           <div className = "container">
-            <div className = "toggle-menu">
+            { /* <div className = "toggle-menu">
+
               <button
                 onClick={ this.toggleOptions }
                 className= {`options-button ${this.state.showSideBar ? 'options-button-open' : 'options-button-close'}`}
               >
                 {this.state.showSideBar? 'Hide': 'Show'}
               </button>
-            </div>
+            </div> */ }
             <div className = {`options-box ${this.state.showSideBar? 'options-box-open' : 'options-box-closed'}`}>
-              <h1> Land Between the Lakes </h1>
-              <h2> Campgrounds </h2>
+              <h2> Campsite Information </h2>
               <div>
                 <MySearch
                   myPlaces = {this.state.myPlaces}
@@ -193,13 +230,14 @@ componentWillMount  ()  {
               <div>
                 <MyPlaces
                   myPlaces = {this.state.myPlaces}
-                  handleOnClick = {this.handleOnClick}
+                  handleListClick = {this.handleListClick}
+                  showSideBar = {this.state.showSideBar}
                 />
               </div>
               <div>
                 {this.state.myPlaces
                   .filter ( place => {
-                    return place.markerPin === this.state.onClickURL;
+                    return place.markerPin === this.state.selectedMarker;
                   })
 
                   .map (place => {
@@ -208,6 +246,7 @@ componentWillMount  ()  {
                         key={'sb'+place.id}
                         place={place}
                         mapCenter={this.state.defaultCenter}
+                        isInfoBox={false}
                       />
                     );
                   })
@@ -225,14 +264,21 @@ componentWillMount  ()  {
                   handleMouseOver = {this.handleMouseOver}
                   handleMouseOut = {this.handleMouseOut}
                   closeInfoBox = {this.closeInfoBox}
-                  onClickURL = {this.state.onClickURL}
+                  selectedMarker = {this.state.selectedMarker}
                   mapCenter = {this.state.defaultCenter}
+                  showSideBar = {this.state.showSideBar}
                 />
               </Online>
 
               <Offline>
-                <div className="offline-map">
-                  <div className="offline-div">
+                <div
+                  className={'offline-map'}
+                  aria-label={'Offline Map of Land Between the Lakes'}
+                  tabIndex={0}
+                >
+                  <div
+                    className={'offline-div'}
+                    tabIndex={0}>
                     <h3>Your interactive map is not available in off-line mode</h3>
                     <p> Please check your internet connection </p>
                   </div>

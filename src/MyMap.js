@@ -22,34 +22,44 @@ export const MyMap = compose (
 
     <GoogleMap
       defaultCenter={props.mapCenter}
-      defaultZoom={10}
+      defaultZoom={9.5}
       scrollwheel={false}
       zoomControl={true}
     >
       { props.markers
         .map (place => {
           return (
+
             <Marker
               key={place.id}
               position={place.location}
               icon = {place.markerPin}
               title= { place.name }
               defaultAnimation={2}
-              onClick = { () => props.handleOnClick (place)}
+              onClick = { (event) => props.handleOnClick (event, place)}
+              onKeyUp = { (event) => props.handleOnClick (event, place)}
               onMouseOver = { () => props.handleMouseOver (place)}
               onMouseOut = { () => props.handleMouseOut (place)}
+              tabIndex={0}
+              onTilesLoaded={()=>{
+                let map = document.querySelector('iframe');
+                map.setAttribute('title','Google Map of Land Between The Lakes Campgrounds');
+              }}
             >
-              {(place.markerPin === props.onClickURL) &&  (
+              {(place.markerPin === props.selectedMarker) && !props.showSideBar &&  (
                 <InfoBox
-                  onCloseClick={ () => props.closeInfoBox(place)}
+                  onCloseClick={ (event) => props.closeInfoBox(event, place)}
+                  tabIndex={0}
                 >
                   <SiteDetails
                     place={place}
                     mapCenter={props.mapCenter}
+                    isInfoBox={true}
                   >
                   </SiteDetails>
                 </InfoBox>)}
             </Marker>
+
           );})
       }
     </GoogleMap>

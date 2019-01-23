@@ -13,7 +13,7 @@
     5.  Filter the markers on the map accorging to user-provided search criteria
     6.  Integrate with google maps API (or another mapping API).
     7.  Integrate with another 3rd party API to provide additional information about the places of interest
-    8.  Thee additional 3rd party API cannot be a Google API
+    8.  The additional 3rd party API cannot be a Google API
 
 ## Future Enhancements:
     1.  Continue to work on user interface for the list box so that the entire row is highlighted when selected

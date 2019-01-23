@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class MyPlaces extends Component {
+class Places extends Component {
 
   /*****************************************************************************
    *
-   *  The MyPlaces component renders the list of places in the sidebar
+   *  The Places component renders the list of places in the sidebar
    *
    ****************************************************************************/
 
@@ -57,4 +57,4 @@ class MyPlaces extends Component {
   }
 }
 
-export default MyPlaces;
+export default Places;

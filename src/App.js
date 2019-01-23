@@ -4,15 +4,22 @@ import sortBy from 'sort-by';
 import {Online, Offline} from 'react-detect-offline';
 
 
-import { MyMap } from './MyMap';
+import { Map } from './Map';
 import Header from './Header';
-import MyPlaces from './MyPlaces';
-import MySearch from './MySearch';
+import Places from './Places';
+import Search from './Search';
 import SiteDetails from './SiteDetails';
 import Campgrounds from './data/lbl-campsites';
 import './App.css';
 
 class App extends Component {
+
+/*******************************************************************************
+ *
+ *  The App component is the main application.  It manages the rendering of the
+ *  entire main page and manages state changes and user actions.
+ *
+ ******************************************************************************/
 
 state = {
   myPlaces: [],                     // array of interesting places.
@@ -337,10 +344,7 @@ componentDidMount() {
 
                 { /* Show the search bar */ }
 
-                <MySearch
-                  myPlaces = {this.state.myPlaces}
-                  setShowAllMyPlaces = {this.setShowAllMyPlaces}
-                  setShowMyPlacesFromQuery = {this.setShowMyPlacesFromQuery}
+                <Search
                   updateQuery = {this.updateQuery}
                   searchQuery = {this.state.searchQuery}
                 />
@@ -349,7 +353,7 @@ componentDidMount() {
 
                 { /* Show the list of places */ }
 
-                <MyPlaces
+                <Places
                   myPlaces = {this.state.myPlaces}
                   handleListClick = {this.handleListClick}
                   showSideBar = {this.state.showSideBar}
@@ -377,9 +381,8 @@ componentDidMount() {
               { /* if Online, then show active, online Google Map */}
 
               <Online>
-                <MyMap
+                <Map
                   markers = {this.state.markers}
-                  myPlaces = {this.state.myPlaces}
                   handleOnClick = {this.handleOnClick}
                   handleMouseOver = {this.handleMouseOver}
                   handleMouseOut = {this.handleMouseOut}

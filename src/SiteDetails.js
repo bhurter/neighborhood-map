@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
 import {Online, Offline} from 'react-detect-offline';
+
+import './App.css';
+
 
 class SiteDetails extends Component {
 
@@ -31,7 +33,6 @@ class SiteDetails extends Component {
 
   state = {
     flickrAPIKey: '81681c8d34bd8f7da8994a9664dac8cb',   // flickr API key
-    flickrAPISecret: 'a76ac0da7275f958',                // flickr API secret
     flickrURL: '',                                      // flickr URL - holds the API call
     flickrTitle: '',                                    // title of the image
     flickrNotFound: '/images/image-not-available.jpg',          // image to use if nothing is returned from flickr API

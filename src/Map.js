@@ -1,19 +1,20 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox';
-import SiteDetails from './SiteDetails';
 import { compose, withProps } from 'recompose';
+
+import SiteDetails from './SiteDetails';
 import './App.css';
 
 /*******************************************************************************
  *
- *  The MyMap component uses react-google-maps  by Tom Chen to render the
+ *  The Map component uses react-google-maps  by Tom Chen to render the
  *  Google Maps.  This implementation follows the example provided by Tom Chen,
  *  including the use of recompose.
  *
  ******************************************************************************/
 
-export const MyMap = compose (
+export const Map = compose (
 
   // Set up the GoogleMap properties.  googleMapURO includes the API Key
 

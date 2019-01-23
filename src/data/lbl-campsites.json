@@ -5,7 +5,7 @@
 	 	"location":{"lat":36.9630493,"lng": -88.2022803},
 	 	"category": "Basic Campground",
 	 	"showPlace": true,
-	 	"markerPin": "blue-pin.png",
+	 	"markerPin": "images/blue-pin.png",
 	 	"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#twin%20lakes"
 	},
 
@@ -15,7 +15,7 @@
 		"location":{"lat": 36.9603905,"lng": -88.0623453},
 		"category": "Self Service Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#cravens%20bay"
 	},
 
@@ -25,7 +25,7 @@
 		"location":{"lat": 36.9803852,"lng": -88.1604027},
 		"category": "Basic Camping Area",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.landbetweenthelakes.us/seendo/camping/basic/p1100733/"
 	},
 
@@ -36,7 +36,7 @@
 			{"lat": 36.9367862,	"lng": -88.1705664},
 		"category": "Basic Camping Area",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#pisgah%20point"
 	},
 
@@ -46,7 +46,7 @@
 		"location": {"lat": 36.4862077,"lng": -88.0360234},
 		"category": "Developed Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#piney"
 	},
 
@@ -56,7 +56,7 @@
 		"location":{"lat": 36.5237623,"lng": -88.0413711},
 		"category": "Basic Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#boswell%20landing"
 	},
 
@@ -67,7 +67,7 @@
 		"lng": -88.1279951},
 		"category": "Basic Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#sugar%20bay"
 	},
 
@@ -77,7 +77,7 @@
 		"location": {"lat": 36.9453869,"lng": -88.188774},
 		"category": "Developed Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#hillman%20ferry"
 	},
 
@@ -87,7 +87,7 @@
 		"location": {"lat": 36.7377307,"lng": -88.0022237},
 		"category": "Developed Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#wranglers"
 	},
 
@@ -97,7 +97,7 @@
 		"location": {"lat": 36.8553623,"lng": -88.020011},
 		"category": "Developed Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#energy%20lake"
 	},
 
@@ -107,7 +107,7 @@
 		"location": {"lat": 36.719325,"lng": -88.069013},
 		"category": "Basic Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#redd%20hollow"
 	},
 
@@ -117,7 +117,7 @@
 		"location": {"lat": 36.7506555,"lng": -88.0737269},
 		"category": "Self Service Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.landbetweenthelakes.us/seendo/trails/turkey-bay/"
 	},
 
@@ -127,7 +127,7 @@
 		"location": {"lat": 36.7740624,"lng": -88.1098419},
 		"category": "Self Service Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#fenton"
 	},
 
@@ -137,7 +137,7 @@
 		"location": {"lat": 36.7254919,"lng": -88.0785244},
 		"category": "Group Camping Area",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#colson%20hollow"
 	},
 
@@ -147,7 +147,7 @@
 		"location": {"lat": 36.5568261,"lng": -87.9061013},
 		"category": "Self Service Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#gatlin%20point"
 	},
 
@@ -157,7 +157,7 @@
 		"location": {"lat": 36.6238099,"lng": -88.0390581},
 		"category": "Basic Camping Area",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#ginger%20bay"
 	},
 
@@ -167,7 +167,7 @@
 		"location": {"lat": 36.8835553,"lng": -88.022359},
 		"category": "Basic Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#taylor%20bay"
 	},
 
@@ -177,7 +177,7 @@
 		"location": {"lat": 36.987723,"lng": -88.2029253},
 		"category": "Basic Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#nickell%20branch"
 	},
 
@@ -187,7 +187,7 @@
 		"location": {"lat": 36.9183498,"lng": -88.1768163},
 		"category": "Basic Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#birmingham%20ferry"
 	},
 
@@ -197,7 +197,7 @@
 		"location": {"lat": 36.9088002,"lng": -88.1503298},
 		"category": "Basic Campground",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#smith%20bay"
 	},
 
@@ -207,7 +207,7 @@
 		"location": {"lat": 36.6054647,"lng": -87.994998},
 		"category": "Basic Camping Area",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#neville%20bay"
 	},
 
@@ -217,7 +217,7 @@
 		"location": {"lat": 36.4484627,"lng": -88.0464552},
 		"category": "Basic Camping Area",
 		"showPlace": true,
-		"markerPin": "blue-pin.png",
+		"markerPin": "images/blue-pin.png",
 		"link": "https://www.forestcamping.com/dow/southern/lblcmp.htm#grays%20landing"
 		}
 

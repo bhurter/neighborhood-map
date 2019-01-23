@@ -6,15 +6,14 @@
  Udacity Front End Web Developer Nanodegree project
 
 ## Requirements:
-Create an application that:
-    1.  Displays a single-page map of a favorite neighborhood or area
-    2.  Displays markers on the map to identify places of interest
-    3.  Displays details about each site that has a marker
+    1.  Display a single-page map of a favorite neighborhood or area
+    2.  Display markers on the map to identify places of interest
+    3.  Display details about each site that has a marker
     4.  Support both on-line and off-line mode
-    5.  Filter the markers on the map according to user-provided search criteria
-    6.  Integrate with google maps API (or another mapping API)
-    7.  Integrate with another 3rd party API to provide additional information about the places of interest.  
-    8.  The additional 3rd party API cannot be a Google API.
+    5.  Filter the markers on the map accorging to user-provided search criteria
+    6.  Integrate with google maps API (or another mapping API).
+    7.  Integrate with another 3rd party API to provide additional information about the places of interest
+    8.  Thee additional 3rd party API cannot be a Google API
 
 ## Future Enhancements:
     1.  Continue to work on user interface for the list box so that the entire row is highlighted when selected

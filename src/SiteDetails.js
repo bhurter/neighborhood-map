@@ -34,7 +34,7 @@ class SiteDetails extends Component {
     flickrAPISecret: 'a76ac0da7275f958',                // flickr API secret
     flickrURL: '',                                      // flickr URL - holds the API call
     flickrTitle: '',                                    // title of the image
-    flickrNotFound: 'image-not-available.jpg',          // image to use if nothing is returned from flickr API
+    flickrNotFound: '/images/image-not-available.jpg',          // image to use if nothing is returned from flickr API
     flickrGroup: '1339214@N20',                         // group_id
     offlineImage: '/images/BisonAtLBL.png',             // image to use in place of flickr image when browser is offline
   }
@@ -242,22 +242,6 @@ class SiteDetails extends Component {
       return (
         <div className={className} tabIndex="0" >
           <h3> {place.name} </h3>
-
-          <Online>
-            <ul
-              title = {place.name + ' ' + place.category + ' details'}
-              className="info-contents" >Helpful Links:
-              <li>
-                <a href = {place.link} target = "blank"> {place.name + ' ' + place.category }</a>
-              </li>
-              <li>
-                <a href = "https://www.landbetweenthelakes.us/seendo/camping/" target = "blank">Camping at Land Between the Lakes</a>
-              </li>
-            </ul>
-            <img className = "info-box-image" src={this.state.flickrURL} alt={this.state.flickrTitle}/>
-          </Online>
-
-          <Offline>
           <ul
             title = {place.name + ' ' + place.category + ' details'}
             className="info-contents" >Helpful Links:
@@ -268,6 +252,12 @@ class SiteDetails extends Component {
               <a href = "https://www.landbetweenthelakes.us/seendo/camping/" target = "blank">Camping at Land Between the Lakes</a>
             </li>
           </ul>
+
+          <Online>
+            <img className = "info-box-image" src={this.state.flickrURL} alt={this.state.flickrTitle}/>
+          </Online>
+
+          <Offline>
             <img className = "info-box-image" src={this.state.offlineImage} alt="Bison at LBL"/>
           </Offline>
         </div>

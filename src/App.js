@@ -28,8 +28,6 @@ state = {
     lng: -88.0329686}
 }
 
-
-
 componentDidMount() {
 
   // Load the campground data
@@ -333,7 +331,7 @@ componentDidMount() {
 
             { /* Show or hide the sidebar based on state value of showSideBar*/ }
 
-            <div className = {`options-box ${this.state.showSideBar? 'options-box-open' : 'options-box-closed'}`}>
+            <aside className = {`options-box ${this.state.showSideBar? 'options-box-open' : 'options-box-closed'}`}>
               <h2> Campsite Information </h2>
               <div>
 
@@ -370,7 +368,7 @@ componentDidMount() {
                 />
 
               </div>
-            </div>
+            </aside>
 
             { /* Show the map */}
 

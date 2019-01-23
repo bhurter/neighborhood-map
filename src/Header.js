@@ -33,7 +33,7 @@ class Header extends Component {
           onClick={this.props.toggleOptions}
         />
 
-        <h1 className="main-title">Campsites at Land Between the Lakes</h1>
+        <h1 className="main-title">Camping at Land Between the Lakes</h1>
 
       </header>
     );

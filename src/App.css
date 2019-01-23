@@ -172,7 +172,7 @@ li:active {
 }
 
 .options-button{
- background-image: url('/round-arrow-button.png');
+ background-image: url('/images/arrow.png');
  background-color: #137cae;
  background-repeat: no-repeat;
  margin: 22px;

@@ -6,8 +6,15 @@
  Udacity Front End Web Developer Nanodegree project
 
 ## Requirements:
-Create a map application that allows the user to:
-    1.  TBD
+Create an application that:
+    1.  Displays a single-page map of a favorite neighborhood or area
+    2.  Displays markers on the map to identify places of interest
+    3.  Displays details about each site that has a marker
+    4.  Support both on-line and off-line mode
+    5.  Filter the markers on the map according to user-provided search criteria
+    6.  Integrate with google maps API (or another mapping API)
+    7.  Integrate with another 3rd party API to provide additional information about the places of interest.  
+    8.  The additional 3rd party API cannot be a Google API.
 
 ## Future Enhancements:
     1.  Continue to work on user interface for the list box so that the entire row is highlighted when selected
@@ -44,52 +51,52 @@ Create a map application that allows the user to:
 The App component is the main application.  It manages the rendering of the entire main page and manages state changes and user actions.
 
 #### State
-  myPlaces - array of interesting places.
-  searchQuery - current query in the search box
-  markers - array of markers to be shown on the map
-  selectedMarker - icon for the selected marker - value: '/images/pink-pin.png'
-  standardMarker - icon for the un-selected marker - value: '/images/blue-pin.png'
-  hoverMarker - icon to show when hovering over a marker - value:  '/images/yellow-pin.png'
-  activeMarker - id of the currently selected marker.  A value of -1 indicates no marker selected - initial value: -1
-  showSideBar - indicates whether or not the sidebar is visible - initial value:  true
-  defaultCenter - the default map center
+  - myPlaces - array of interesting places.
+  - searchQuery - current query in the search box
+  - markers - array of markers to be shown on the map
+  - selectedMarker - icon for the selected marker - value: '/images/pink-pin.png'
+  - standardMarker - icon for the un-selected marker - value: '/images/blue-pin.png'
+  - hoverMarker - icon to show when hovering over a marker - value:  '/images/yellow-pin.png'
+  - activeMarker - id of the currently selected marker.  A value of -1 indicates no marker selected - initial value: -1
+  - showSideBar - indicates whether or not the sidebar is visible - initial value:  true
+  - defaultCenter - the default map center
 
 ### Header
 The Header component displays the header on the map page
 
 #### Props:
-  showSideBar   Indicates whether or not to show the side bar
-  toggleOptions Function to call when the user clicks the show/hide button
+  - showSideBar   Indicates whether or not to show the side bar
+  - toggleOptions Function to call when the user clicks the show/hide button
 
 ### Map
 The Map component uses react-google-maps  by Tom Chen to render the Google Maps.  This implementation follows the example provided by Tom Chen, including the use of recompose.
 
 #### Props:
-  markers - the array of markers to display
-  handleOnClick - callback function to manage user click on markers
-  handleMouseOver - callback function to manage mouse over on markers
-  handleMouseOut - callback function to manage mouse out on markers
-  closeInfoBox - callback function to manage the user click on the close infoBox icon
-  selectedMarker - the selected marker
-  mapCenter - the location of the map center.  Includes lat and lng
-  showSideBar - boolean to indicate whether or not to show the side bar
-  activeMarkerID - the ID of the active marker.  May differ from the selected Marker
+  - markers - the array of markers to display
+  - handleOnClick - callback function to manage user click on markers
+  - handleMouseOver - callback function to manage mouse over on markers
+  - handleMouseOut - callback function to manage mouse out on markers
+  - closeInfoBox - callback function to manage the user click on the close infoBox icon
+  - selectedMarker - the selected marker
+  - mapCenter - the location of the map center.  Includes lat and lng
+  - showSideBar - boolean to indicate whether or not to show the side bar
+  - activeMarkerID - the ID of the active marker.  May differ from the selected Marker
 
 ### Places
 The Places component renders the list of places in the sidebar
 
 #### Props:
-  myPlaces - the array of places
-  handleListClick - the function to manage a list click
-  showSideBar - flags whether or not to show the sidebar
+  - myPlaces - the array of places
+  - handleListClick - the function to manage a list click
+  - showSideBar - flags whether or not to show the sidebar
 
 ### Search
 The Search component manages the search field and sets each place to show or hide based on the contents of the search query
 
 #### Props:
-  myPlaces - the array of places
-  handleListClick - the function to manage a list click
-  showSideBar - flags whether or not to show the sidebar
+  - myPlaces - the array of places
+  - handleListClick - the function to manage a list click
+  - showSideBar - flags whether or not to show the sidebar
 
 ### SiteDetails
 The SiteDetails component manages the rendering of the site Details within both the infoBox and in the sidebar.
@@ -101,19 +108,18 @@ If there is not a marker selected, then the SiteDetails renders instructions for
 If the browser is offline, then it displays the standard information and a default picture.
 
 #### State
-  flickrAPIKey: - flickr API key
-  flickrURL -  flickr URL - holds the API call
-  flickrTitle - title of the image
-  flickrNotFound - path to the image to use if nothing is returned from flickr API
-  flickrGroup - group_id to limit searches
-  offlineImage - image to use in place of flickr image when browser is offline
+  - flickrAPIKey: - flickr API key
+  - flickrURL -  flickr URL - holds the API call
+  - flickrTitle - title of the image
+  - flickrNotFound - path to the image to use if nothing is returned from flickr API
+  - flickrGroup - group_id to limit searches
+  - offlineImage - image to use in place of flickr image when browser is offline
 
 #### Props
-  place - the place for which to display details
-  mapCenter - the map mapCenter
-  isInfoBox - indicates whether to display details in the infoBox or side bar
-  activeMarkerID - ID of the active marker
-}
+  - place - the place for which to display details
+  - mapCenter - the map mapCenter
+  - isInfoBox - indicates whether to display details in the infoBox or side bar
+  - activeMarkerID - ID of the active marker
 
 ## User Instructions
 - Once you run `npm start`, the server opens a browser window to the application home page. Typically, this is found at localhost:3000, but may be different, depending on your computer configuration.
@@ -136,7 +142,7 @@ If the browser is offline, then it displays the standard information and a defau
 - To view a campsite, either select the campsite from the list box on the sidebar or click on a marker on the map.
 - To clear the campsite details, click a selected item in the list box, or click on the selected (pink) marker.
 
-
+# Project Information
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -162,4 +168,6 @@ Your app is ready to be deployed!
 
 ## Credits
 
-Tent icon:  https://creativecommons.org/licenses/by-sa/3.0/legalcode by Nicolas Mollet
+- [Tent icon](https://creativecommons.org/licenses/by-sa/3.0/legalcode) by Nicolas Mollet 
+- Default image for offline site details:  Courtesy of Beth Hurter
+- [Pin Icons](https://www.kisspng.com/png-drawing-pin-bulletin-board-stock-photography-thumb-845532/) by KissPNG

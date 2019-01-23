@@ -3,43 +3,26 @@ import PropTypes from 'prop-types';
 
 class MySearch extends Component {
 
+  /*****************************************************************************
+   *
+   *  The MySearch component manages the search field and sets each place to
+   *  show or hide based on the contents of the search query
+   *
+   ****************************************************************************/
 
   static propTypes = {
-    myPlaces: PropTypes.array.isRequired,
-    setShowAllMyPlaces: PropTypes.func.isRequired,
-    setShowMyPlacesFromQuery: PropTypes.func.isRequired,
-    updateQuery: PropTypes.func.isRequired,
-    searchQuery: PropTypes.string.isRequired,
+    myPlaces: PropTypes.array.isRequired,                 // array of places
+    setShowAllMyPlaces: PropTypes.func.isRequired,        // function to clear the filter and show all places
+    setShowMyPlacesFromQuery: PropTypes.func.isRequired,  // function to only show places in the filter
+    updateQuery: PropTypes.func.isRequired,               // function to call when query is updated
+    searchQuery: PropTypes.string.isRequired,             // the current query that is in the search box
   }
-
-  state = {
-    searchQuery: ''
-  }
-
-  componentDidMount() {
-
-  }
-
-
-  /*
-    updateQuery = (searchQuery) => {
-
-
-      //If search query is not empty, search for capmgrounds.
-      //If search returns data, then update MyPlaces.showPlace.
-      //If search does not return any data then hide all isMarkerShown = false
-      //If search query is empty, then set isMarkerShown = true for all
-
-      console.log ('in updateQuery - searchQuery = ' + searchQuery)
-      this.setState({searchQuery});
-      searchQuery ?
-        this.props.setShowMyPlacesFromQuery (searchQuery) :
-        this.props.setShowAllMyPlaces (true);
-
-    }
-  */
 
   render() {
+
+    //  create the div and input field for the search query, and set callback
+    //  to handle changes in query value
+    
     return (
       <div className = 'search-input=wrapper'>
         <input

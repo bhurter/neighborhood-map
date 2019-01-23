@@ -4,24 +4,29 @@ import PropTypes from 'prop-types';
 
 class MyPlaces extends Component {
 
+  /*****************************************************************************
+   *
+   *  The MyPlaces component renders the list of places in the sidebar
+   *
+   ****************************************************************************/
+
   static propTypes = {
-    myPlaces: PropTypes.array.isRequired,
-    handleListClick: PropTypes.func.isRequired,
-    showSideBar: PropTypes.bool.isRequired,
+    myPlaces: PropTypes.array.isRequired,         // the array of places
+    handleListClick: PropTypes.func.isRequired,   // the function to manage a list click
+    showSideBar: PropTypes.bool.isRequired,       // flags whether or not to show the sidebar
   }
 
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate() {
-
-  }
 
   render() {
     let myPlaces = this.props.myPlaces;
+
+    // set aria properties and tabIndex based on whether or not the sidebar is visible
+
     let ariaHidden = !this.props.showSideBar;
     let tabIndex = this.props.showSideBar ? 0 : -1;
+
+    // create the ul, then add each place that is flagged to show as a li
+
     return (
       <ul
         title= 'Campgrounds in LBL'

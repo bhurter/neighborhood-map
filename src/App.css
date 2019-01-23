@@ -1,6 +1,6 @@
 html, body { height:100%;width:100% };
 
-.App {
+ .App {
   text-align: center;
 }
 
@@ -26,29 +26,104 @@ html, body { height:100%;width:100% };
 
 h1, h2 {
   color: #525454;
-  /*font-size: 22px;*/
   margin: 0 0 10px 0;
   text-align: center;
   font-size: 1.25em;
 }
 
-h2 {
-  /*font-size: 18px;*/
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: #f1efe8;
+}
+
+.header {
+  color: white;
+  background-color: #137cae;
+  display: block;
+  height: 60px;
+  width: 100%;
+}
+
+/*
+.hide-show {
+  background-color: #f0ffff;
+  padding: 0px;
+  width: 64px;
+  height: 100%;
+  display: flex;
+  flex-flow: wrap;
+
+}
+*/
+
+.info-box {
+  background-color: #f1efe8;
+  border-style: solid;
+  border: 1px solid #999;
+  color: #525454;
+  border-radius: 5px;
+  opacity: 1.0;
+  padding: 5px;
+  font-size: .8em;
+}
+
+.info-box-details {
+  width: 220px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-box-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: auto;
+}
+
+.info-contents {
+list-style-type: none;
+display: block;
+padding: 0;
+}
+
+.li-myList {
+  cursor: pointer;
+  font-size: 1em;
+  text-decoration: none;
+  list-style-type: none;
+  color: #525454;
+}
+
+li:active {
+  background-color: #137cae;
+  color: white;
+}
+
+
+.main-title {
+  background-color: #137cae;
+  color: white;
+  text-align: center;
+  width:auto;
+  padding: 15px;
 }
 
 .map {
 
    height: 100vh;
    width: 100%;
-   /*left: 362px;*/
-   /*left: 0px;
-   position: relative;*/
-
 }
 
-.toggle-menu {
-  height: 100%;
-  width: 40px;
+.offline-div {
+  margin: 0;
+  padding: 1vh;
+  position: relative;
+  top: 25vh;
+  background-color: #f1efe8;
+  color: #525454
 }
 
 .offline-map {
@@ -61,75 +136,12 @@ h2 {
   width: 100%;
 }
 
-.offline-div {
-  margin: 0;
-  padding: 1vh;
-  position: relative;
-  top: 25vh;
-  background-color: #f1efe8;
-}
-
-.container {
+.toggle-menu {
   height: 100%;
-  width: 100%;
-  display: flex;
-  background-color: #f1efe8;
-  /*flex-flow: wrap;*/
+  width: 40px;
 }
 
-.info-box {
-  background-color: #f1efe8;
-  border-style: solid;
-  border: 1px solid #999;
-  color: #999;
-  border-radius: 5px;
-  opacity: 1.0;
-  padding: 5px;
-  font-size: .6em;
-}
-/*  position:relative;*/
 
-.info-box-image {
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: auto;
-}
-
-.info-box-details {
-  width: 220px;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-}
-
-.options-box-details {
-  width: 95%;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-}
-
-.info-title {
-  /*position:relative;*/
-}
-
-.info-contents {
-/*  position:relative;*/
-list-style-type: none;
-display: block;
-padding: 0;
-}
-
-.hide-show {
-  background-color: #f0ffff;
-  padding: 0px;
-  width: 64px;
-  height: 100%;
-  display: flex;
-  flex-flow: wrap;
-
-}
 .options-box {
   background: #f1efe8;
   /*border: 1px solid #999;
@@ -140,12 +152,21 @@ padding: 0;
   text-align: left;
   /*width: 340px;*/
   width: 30%;
+  width: 340px;
   font-size: .8em;
 }
 
 .options-box-closed {
   display: none;
 }
+
+.options-box-details {
+  width: 95%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
 .options-box-open {
   display: inline-block;
 }
@@ -160,12 +181,6 @@ padding: 0;
  border: none;
  cursor: pointer;
  float: left;
-
-/* float: right;*/
- /*height: 32px;
- width: 32px;
- margin-top: 15px;
- margin-left: 5px;*/
  outline: none;
 }
 
@@ -186,37 +201,9 @@ padding: 0;
   overflow: auto;
   padding: 10px 10px 30px 10px;
   text-align: left;
-  font-size: .8em;
+  font-size: 1em;
 }
 
-.li-myList {
-  cursor: pointer;
-  font-size: 0.8em;
-  text-decoration: none;
-  list-style-type: none;
-}
-
-li:active {
-  background-color: #137cae;
-  color: white;
-}
-
-.header {
-  color: white;
-  background-color: #137cae;
-  display: block;
-  height: 60px;
-  width: 100%;
-}
-
-
-.main-title {
-  background-color: #137cae;
-  color: white;
-  text-align: center;
-  width:auto;
-  padding: 15px;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -231,7 +218,4 @@ li:active {
   .options-box {
     width: 60%;
   }
-
-  {}
-
 }

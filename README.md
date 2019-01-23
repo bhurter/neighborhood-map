@@ -17,6 +17,7 @@ Create a map application that allows the user to:
     5.  Add ability to provide reviews of the Campgrounds
     6.  Look for API that will provide camping amenities and display as part of the site details.
     7.  Make search case insensitive
+    8.  Only allow user to toggle side bar if they are online.
 
 ## Getting Started
     1.  Clone the repository or download the files
